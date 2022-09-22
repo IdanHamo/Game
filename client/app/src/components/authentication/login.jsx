@@ -1,6 +1,7 @@
 import { useFormik } from "formik";
 import Joi from "joi";
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 const Login = () => {
   const form = useFormik({
     validateOnMount: true,
@@ -38,14 +39,13 @@ const Login = () => {
     },
   });
   return (
-    <div className="container">
-   <div className="d-flex  justify-content-center py-4">
+    <div className="container pb-5">
+      <div className="d-flex  justify-content-center py-4">
         <div className="text-center page-header ">Login</div>
       </div>
       <div className="d-flex justify-content-center">
         <div className=" container form-container">
-          <form className="p-4" noValidate onSubmit={form.handleSubmit} >
-
+          <form className="p-4" noValidate onSubmit={form.handleSubmit}>
             <label htmlFor="username" className="label mb-2">
               Username (required)
             </label>
@@ -59,7 +59,7 @@ const Login = () => {
             />
 
             <label htmlFor="password" className="label mb-2">
-            Password (required)
+              Password (required)
             </label>
             <br />
             <input
@@ -69,10 +69,15 @@ const Login = () => {
               {...form.getFieldProps("password")}
               error={form.touched.password && form.errors.password}
             />
-
-            <button className="btn btn-dark mt-3" type="submit">
-              Submit
-            </button>
+            <div className="d-flex justify-content-center">
+              <button className="btn btn-dark mt-3" type="submit">
+                Submit
+              </button>
+            </div>
+            <div className="d-flex justify-content-around buttons my-4">
+              <NavLink to="/registration">Registration</NavLink>
+              <a href="#">Reset password</a>
+            </div>
           </form>
         </div>
       </div>

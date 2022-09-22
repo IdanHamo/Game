@@ -42,7 +42,7 @@ const Registration = () => {
     },
   });
   return (
-    <div className="container">
+    <div className="container pb-5">
       <div className="d-flex  justify-content-center py-4">
         <div className="text-center page-header ">Register</div>
       </div>
