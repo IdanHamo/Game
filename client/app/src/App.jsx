@@ -8,6 +8,7 @@ import Navbar from "./components/global/navbar";
 import { Route, Routes } from "react-router-dom";
 import Registration from "./components/authentication/registration";
 import Login from "./components/authentication/login";
+import Footer from "./components/global/footer";
 function App() {
   return (
     <div className="App d-flex flex-column min-vh-100">
@@ -37,7 +38,7 @@ function App() {
         </Routes>
       </div>
       <footer>
-        <Icon path={mdiFoodCroissant} size={1}></Icon>
+        <Footer></Footer>
       </footer>
     </div>
   );

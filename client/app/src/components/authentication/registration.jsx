@@ -42,15 +42,15 @@ const Registration = () => {
     },
   });
   return (
-    <div className="container pb-5">
-      <div className="d-flex  justify-content-center py-4">
+    <div className="container pb-5 min-vh-100">
+      <div className="d-flex  justify-content-center align-items-center py-4">
         <div className="text-center page-header ">Register</div>
       </div>
 
       <div className="d-flex justify-content-center">
         <div className=" container form-container">
           <form className="p-4" noValidate onSubmit={form.handleSubmit}>
-            <h4 className="text-white h6 mb-4">Account details</h4>
+            <h3 className="text-white  mb-4">Account details</h3>
 
             <label htmlFor="username" className="label mb-2">
               Username (required)

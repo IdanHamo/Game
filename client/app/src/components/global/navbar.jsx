@@ -5,7 +5,7 @@ const Navbar = () => {
       <div className="container">
         <a className="navbar-brand" href="#">
           <img
-            src="https://unitysro.net/wp-content/themes/armadon/assets/images/logos/logo-icon.svg"
+            src="favicon.ico"
             alt="logo"
           />
         </a>
