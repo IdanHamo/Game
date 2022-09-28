@@ -65,3 +65,81 @@ a {
 .footer {
   background-color: #211f2a;
 }
+.home {
+  background-color: #211f2a;
+}
+
+.home-container {
+  width: 100%;
+  background-image: url(../src/images/firstBackground.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100%;
+  clip-path: polygon(0% 0%, 100% 0, 100% 100%, 6% 100%, 0 94%);
+}
+.home-first-section {
+  width: 100%;
+  min-height: 100%;
+  background: linear-gradient(54deg, rgb(0, 0, 0) 13%, rgba(0, 0, 0, 0) 61%);
+}
+.home-first-section-container {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+.home-description {
+  border-left: 2px solid white !important;
+}
+.btn-container {
+  margin-top: 70px;
+}
+.registration-btn {
+  background-color: #df204d !important;
+  border-radius: 7px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 20px;
+}
+
+.login-btn {
+  background-color: white !important;
+  color: #df204d !important;
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 20px;
+
+  border-radius: 7px;
+}
+
+.home-headline {
+  font-size: 3.5rem;
+  font-weight: 600;
+}
+
+.home-lang {
+  color: #df204d !important;
+}
+
+.second-headline {
+  color: white !important;
+  font-size: 4rem !important;
+  font-weight: 500 !important;
+}
+.second-headline-span {
+  color: #df204d !important;
+}
+
+@media only screen and (min-width: 1000px) {
+  .home-container {
+    min-height: 100vh;
+  }
+  .home-headline {
+    font-size: 8rem;
+  }
+  .home-first-section-container {
+    padding-top: 125px;
+    padding-bottom: 125px;
+  }
+  .home-first-section {
+    min-height: 100vh;
+  }
+}
