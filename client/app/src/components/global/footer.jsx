@@ -8,7 +8,6 @@ const Footer = () => {
           style={{ width: "75px", height: "75px" }}
         />
       </div>
-      <img src="favicon.ico" alt="logo" />
       <div className="text-white my-4">Created by Idan &copy;</div>
     </div>
   );
