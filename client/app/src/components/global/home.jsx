@@ -39,10 +39,18 @@ const Home = () => {
         </h2>
         <div className="container">
           <div className="row">
-            <div className="col d-flex justify-content-center text-white">
-              <h3>Real Play2Win</h3>
+            <div className="col-md-10 col-lg-6  text-white">
+              <hr className="mt-5 hr" />
+              <h3 className="third-headline py-4">
+                REAL <span className="third-headline-span">PLAY2WIN</span>
+              </h3>
+              <p>
+                Our project was created by Silkroad Online players, we really
+                care about your gaming experience and do our best to make you
+                feel comfortable playing
+              </p>
             </div>
-            <div className="col d-flex justify-content-center text-white">
+            <div className="col-md-10 col-lg-6 d-flex justify-content-center text-white">
               <h3>Real Play2Win</h3>
             </div>
           </div>
