@@ -15,19 +15,21 @@ const Home = () => {
             <div className="home-description ps-3 text-white h3 ">
               Join our project and shine with us
             </div>
-            <div className="btn-container ps-5 ">
-              <Link
-                to="/registration"
-                className="registration-btn  col-md-3 col-sm-10 col-10 me-4"
-              >
-                Register
-              </Link>
-              <Link
-                to="/login"
-                className=" login-btn   col-md-3 col-sm-10 col-10"
-              >
-                Login
-              </Link>
+            <div className="btn-container container ps-5 ">
+              <div className="row">
+                <Link
+                  to="/registration"
+                  className="registration-btn col-lg-2  col-md-3 col-sm-10   me-4 text-center "
+                >
+                  Register
+                </Link>
+                <Link
+                  to="/login"
+                  className=" login-btn col-lg-2  col-md-3 col-sm-10 text-center  "
+                >
+                  Login
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -37,22 +39,28 @@ const Home = () => {
           Server On
           <span className="second-headline-span"> Stages Of Development</span>
         </h2>
-        <div className="container">
+        <div className="container pb-5">
           <div className="row">
-            <div className="col-md-10 col-lg-6  text-white">
+            <div className="col-md-10 col-lg-6  text-white ">
               <hr className="mt-5 hr" />
-              <h3 className="third-headline py-4">
-                REAL <span className="third-headline-span">PLAY2WIN</span>
-              </h3>
-              <p>
-                Our project was created by Silkroad Online players, we really
-                care about your gaming experience and do our best to make you
-                feel comfortable playing
-              </p>
+              <div className="my-5">
+                <h3 className="third-headline py-4 ">
+                  REAL <span className="third-headline-span">PLAY2WIN</span>
+                </h3>
+                <p className="info-paragraph mb-5">
+                  Our project was created by Silkroad Online players, we really
+                  care about your gaming experience and do our best to make you
+                  feel comfortable playing
+                </p>
+                <Link
+                  to="/login"
+                  className=" login-btn   col-md-3 col-sm-10 col-10 mt-5"
+                >
+                  Login
+                </Link>
+              </div>
             </div>
-            <div className="col-md-10 col-lg-6 d-flex justify-content-center text-white">
-              <h3>Real Play2Win</h3>
-            </div>
+            <div className="sunset-div col-md-12 col-lg-6 d-flex justify-content-center text-white"></div>
           </div>
         </div>
       </div>
@@ -61,3 +69,22 @@ const Home = () => {
 };
 
 export default Home;
+{
+  /* <svg>
+  <mask id="svgmask1">
+    <polygon
+      fill="#ffffff"
+      points="75 0,200 0, 120 300, 0 300"
+    ></polygon>
+    <polygon
+      fill="#ffffff"
+      points="200 60, 325 60, 245 360, 120 360"
+    ></polygon>
+  </mask>
+  <image
+    className="sunset-image"
+    href="images/sunset.jpg"
+    mask="url(#svgmask1)"
+  ></image>
+</svg> */
+}

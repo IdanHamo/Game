@@ -35,11 +35,13 @@ a {
   background-color: #211f2a;
 }
 
+.main-form-page {
+  background-color: #252836;
+}
 .form-container {
   width: 100%;
   border: 1px solid #252836;
   border-radius: 7px;
-  background-color: #252836;
 }
 .label {
   color: white !important;
@@ -55,7 +57,7 @@ a {
 
 .nav-link {
   font-size: 1.3rem !important;
-  font-weight: 600 !important;
+  font-weight: 500 !important;
 }
 .btn {
   font-weight: 600 !important;
@@ -159,25 +161,42 @@ hr {
   clip-path: polygon(0 0, calc(100% - 5px) 0, 100% 100%, 100% 100%, 0 100%);
 }
 
-@media only screen and (min-width: 1500px) {
-  .home-container {
-    min-height: 100vh;
-  }
-  .home-headline {
-    font-size: 8rem;
-  }
-  .home-first-section-container {
-    padding-top: 125px;
-    padding-bottom: 125px;
-  }
-  .home-first-section {
-    min-height: 100vh;
-  }
-  .second-headline,
-  .third-headline {
-    color: white !important;
-    font-size: 4rem !important;
-    font-weight: 500 !important;
+.info-paragraph {
+  font-size: 1.1rem;
+}
+.sunset-div {
+  clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+  background-image: url(../src/images/sunset.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 400px;
+}
+.semi-login {
+  display: inline-block !important;
+  border-left: #df204d 2px solid;
+}
+.semi-login-headline {
+  color: #df204d !important;
+  padding-bottom:10px ;
+  position: relative;
+}
+
+.semi-login-headline::before {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 15px;
+  right: 15px;
+  width: auto;
+  border-radius: 500px 500px 0 0;
+  height: 7px;
+  background-color: #df204d;
+}
+
+@media only screen and (max-width: 767px) {
+  .login-btn {
+    margin-top: 20px !important;
   }
 }
 
@@ -199,6 +218,28 @@ hr {
   .third-headline {
     color: white !important;
     font-size: 3rem !important;
+    font-weight: 500 !important;
+  }
+}
+
+@media only screen and (min-width: 1500px) {
+  .home-container {
+    min-height: 100vh;
+  }
+  .home-headline {
+    font-size: 8rem;
+  }
+  .home-first-section-container {
+    padding-top: 175px;
+    padding-bottom: 175px;
+  }
+  .home-first-section {
+    min-height: 100vh;
+  }
+  .second-headline,
+  .third-headline {
+    color: white !important;
+    font-size: 4rem !important;
     font-weight: 500 !important;
   }
 }
