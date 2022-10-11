@@ -178,7 +178,7 @@ hr {
 }
 .semi-login-headline {
   color: #df204d !important;
-  padding-bottom:10px ;
+  padding-bottom: 10px;
   position: relative;
 }
 
@@ -193,6 +193,14 @@ hr {
   border-radius: 500px 500px 0 0;
   height: 7px;
   background-color: #df204d;
+}
+
+.login-link {
+  font-size: 1rem;
+}
+
+.semi-login-container {
+  height: 100%;
 }
 
 @media only screen and (max-width: 767px) {
