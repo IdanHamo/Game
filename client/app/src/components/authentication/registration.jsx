@@ -2,6 +2,7 @@ import { useFormik } from "formik";
 import Joi from "joi";
 import { useState } from "react";
 import usersService from "../../services/users";
+import { toast } from "react-toastify";
 const Registration = () => {
   const [error, setError] = useState("");
 
@@ -48,6 +49,7 @@ const Registration = () => {
       try {
         const { status, data } = await usersService.createUser(user);
         console.log(data);
+        toast("user created");
       } catch ({ response }) {
         console.log(response);
         console.log(response.data.message);
@@ -134,9 +136,11 @@ const Registration = () => {
                 Submit
               </button>
             </form>
-          <div className="semi-login col-md-4">
-            <h3 className="semi-login-headline text-center my-4">Do you an account already?</h3>
-          </div>
+            <div className="semi-login col-md-4">
+              <h3 className="semi-login-headline text-center my-4">
+                Do you an account already?
+              </h3>
+            </div>
           </div>
         </div>
       </div>

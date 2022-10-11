@@ -15,7 +15,7 @@ const Home = () => {
             <div className="home-description ps-3 text-white h3 ">
               Join our project and shine with us
             </div>
-            <div className="btn-container container ps-5 ">
+            <div className="btn-container container  ">
               <div className="row">
                 <Link
                   to="/registration"

@@ -76,6 +76,7 @@ a {
   background-image: url(../src/images/firstBackground.png);
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
   min-height: 100%;
   clip-path: polygon(0% 0%, 100% 0, 100% 100%, 6% 100%, 0 94%);
 }

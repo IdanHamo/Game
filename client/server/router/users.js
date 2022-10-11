@@ -13,15 +13,14 @@ router.post("/createUser", async (req, res) => {
   const myQuery = db.query(sql, async (err, result) => {
     try {
       if (err) {
-        res.status(500).send({
+        return res.status(500).send({
           ok: false,
           message: "internal error",
         });
-        return;
       }
 
       if (result.length > 0) {
-     return   res.status(400).send("username or email is already in use");
+        return res.status(400).send("username or email is already in use");
       } else {
         const salt = await bcrypt.genSalt(10);
         user.password = await bcrypt.hash(user.password, salt);
@@ -29,21 +28,22 @@ router.post("/createUser", async (req, res) => {
 
         const insertQuery = "INSERT INTO users SET ?";
 
-        const r = db.query(insertQuery, user, (err, result) => {
+        const insert = db.query(insertQuery, user, (err, result) => {
           if (err) {
             return res.status(400).send({
               ok: false,
               message: "email already exists",
             });
+          } else {
+            return res.status(201).send({
+              ok: true,
+              message: "user created",
+            });
           }
-          return res.status(201).send({
-            ok: true,
-            message: "user created",
-          });
         });
       }
     } catch (e) {
-    return  res.status(400).send({
+      return res.status(400).send({
         ok: false,
         message: e.message,
       });
