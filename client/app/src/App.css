@@ -194,6 +194,14 @@ hr {
   background-color: #df204d;
 }
 
+.login-link {
+  font-size: 1rem;
+}
+
+.semi-login-container {
+  height: 100%;
+}
+
 @media only screen and (max-width: 767px) {
   .login-btn {
     margin-top: 20px !important;

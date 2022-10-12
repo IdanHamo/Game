@@ -4,6 +4,7 @@ import { useState } from "react";
 import usersService from "../../services/users";
 import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
+
 const Registration = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -53,7 +54,19 @@ const Registration = () => {
         password: values.password,
       };
       try {
+        toast("The account created!", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+
         const { status, data } = await usersService.createUser(user);
+
         toast("User Created!", {
           position: "top-center",
           autoClose: 5000,
@@ -65,6 +78,7 @@ const Registration = () => {
           theme: "dark",
         });
         navigate("/login");
+
       } catch ({ response }) {
         setError(response.data.message);
       }
@@ -157,6 +171,15 @@ const Registration = () => {
                 <Link
                   to="/login"
                   className=" login-btn col-lg-5  col-md-8 col-sm-10 col-10 text-center  "
+            
+            <div className="semi-login col-md-4">
+              <h3 className="semi-login-headline text-center mt-4">
+                Do you an account already?
+              </h3>
+              <div className="semi-login-container d-flex justify-content-center align-items-center">
+                <Link
+                  to="/login"
+                  className="col-lg-2  col-md-3 col-sm-10 text-center  "
                 >
                   Login
                 </Link>
