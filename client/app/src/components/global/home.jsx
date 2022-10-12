@@ -42,7 +42,7 @@ const Home = () => {
         <div className="container pb-5">
           <div className="row">
             <div className="col-md-10 col-lg-6  text-white ">
-              <hr className="mt-5 hr" />
+              <hr className=" hr" />
               <div className="my-5">
                 <h3 className="third-headline py-4 ">
                   REAL <span className="third-headline-span">PLAY2WIN</span>
@@ -60,7 +60,8 @@ const Home = () => {
                 </Link>
               </div>
             </div>
-            <div className="sunset-div col-md-12 col-lg-6 d-flex justify-content-center text-white"></div>
+            <div className="sunset-div col-md-12 col-lg-6 d-flex justify-content-center text-white">
+            </div>
           </div>
         </div>
       </div>

@@ -3,8 +3,10 @@ import Joi from "joi";
 import { useState } from "react";
 import usersService from "../../services/users";
 import { toast } from "react-toastify";
+import { Link, useNavigate } from "react-router-dom";
 const Registration = () => {
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const form = useFormik({
     validateOnMount: true,
@@ -40,19 +42,30 @@ const Registration = () => {
       return errors;
     },
     async onSubmit(values) {
+      const { password, confirmPassword } = values;
+      if (password !== confirmPassword) {
+        setError("The passwords not match");
+        return;
+      }
       const user = {
         username: values.username,
         email: values.email,
         password: values.password,
       };
-      console.log(user);
       try {
         const { status, data } = await usersService.createUser(user);
-        console.log(data);
-        toast("user created");
+        toast("User Created!", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+        navigate("/login");
       } catch ({ response }) {
-        console.log(response);
-        console.log(response.data.message);
         setError(response.data.message);
       }
     },
@@ -136,10 +149,18 @@ const Registration = () => {
                 Submit
               </button>
             </form>
-            <div className="semi-login col-md-4">
+            <div className="semi-login col-md-4 d-flex flex-column">
               <h3 className="semi-login-headline text-center my-4">
                 Do you an account already?
               </h3>
+              <div className="flex-fill  d-flex justify-content-center align-items-center mb-5">
+                <Link
+                  to="/login"
+                  className=" login-btn col-lg-5  col-md-8 col-sm-10 col-10 text-center  "
+                >
+                  Login
+                </Link>
+              </div>
             </div>
           </div>
         </div>
