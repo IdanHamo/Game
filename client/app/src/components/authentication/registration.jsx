@@ -170,21 +170,9 @@ const Registration = () => {
                 <Link
                   to="/login"
                   className=" login-btn col-lg-5  col-md-8 col-sm-10 col-10 text-center  "
-                ></Link>
-
-                <div className="semi-login col-md-4">
-                  <h3 className="semi-login-headline text-center mt-4">
-                    Do you an account already?
-                  </h3>
-                  <div className="semi-login-container d-flex justify-content-center align-items-center">
-                    <Link
-                      to="/login"
-                      className="col-lg-2  col-md-3 col-sm-10 text-center  "
-                    >
-                      Login
-                    </Link>
-                  </div>
-                </div>
+                >
+                  Login
+                </Link>
               </div>
             </div>
           </div>
