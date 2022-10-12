@@ -96,7 +96,7 @@ const Login = () => {
             </form>
             <div className="semi-login col-md-4 d-flex flex-column">
               <h3 className="semi-login-headline text-center my-4">
-                Do you an account already?
+                Don't you have an account ?
               </h3>
               <div className="flex-fill  d-flex justify-content-center align-items-center mb-5">
                 <Link

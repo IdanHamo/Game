@@ -54,20 +54,9 @@ const Registration = () => {
         password: values.password,
       };
       try {
-        toast("The account created!", {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
-
         const { status, data } = await usersService.createUser(user);
 
-        toast("User Created!", {
+        toast(data.message, {
           position: "top-center",
           autoClose: 5000,
           hideProgressBar: false,
@@ -164,7 +153,7 @@ const Registration = () => {
             </form>
             <div className="semi-login col-md-4 d-flex flex-column">
               <h3 className="semi-login-headline text-center my-4">
-                Do you an account already?
+                Do you have an account already?
               </h3>
               <div className="flex-fill  d-flex justify-content-center align-items-center mb-5">
                 <Link
