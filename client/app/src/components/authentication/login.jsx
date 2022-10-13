@@ -1,26 +1,24 @@
 import { useFormik } from "formik";
 import Joi from "joi";
 import { useState } from "react";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/authContext";
+import { toast } from "react-toastify";
 const Login = () => {
   const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  const { login } = useAuth();
 
   const form = useFormik({
     validateOnMount: true,
     initialValues: {
       username: "",
-      email: "",
       password: "",
     },
     validate: function (values) {
       const schema = Joi.object({
         username: Joi.string().min(2).max(255).required(),
-        email: Joi.string()
-          .min(6)
-          .max(1024)
-          .email({ tlds: { allow: false } })
-          .required(),
         password: Joi.string().min(6).max(1024).required(),
       });
 
@@ -39,12 +37,31 @@ const Login = () => {
     },
     async onSubmit(values) {
       console.log(values);
+      try {
+        await login(values);
+
+        toast("Logged in successfully", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+
+        navigate("/");
+      } catch ({ response }) {
+        setError(response.data.message);
+      }
+      console.log(values);
     },
   });
   return (
     <div className="container pb-5 min-vh-100">
       <div className="d-flex  justify-content-center align-items-center py-4">
-        <div className="text-center page-header ">Register</div>
+        <div className="text-center page-header ">Login</div>
       </div>
 
       {error ? (

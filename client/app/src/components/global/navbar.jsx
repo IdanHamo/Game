@@ -1,5 +1,22 @@
+import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { useAuth } from "../../context/authContext";
+import httpService from "../../services/httpservice";
+import usersService from "../../services/users";
 const Navbar = () => {
+  const { user } = useAuth();
+  const [fullUser, setFullUser] = useState({});
+
+  useEffect(() => {
+    const getUser = async () => {
+      const userId = await usersService.getUser(user);
+      console.log(userId);
+      const { data } = await httpService.get(`/auth/user/${userId}`);
+      setFullUser(data);
+    };
+    getUser();
+  }, [user]);
+
   return (
     <nav
       className="navbar navbar-expand-md navbar-dark bg-dark"
@@ -28,7 +45,9 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarsExample04">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item  p-4">
-              <NavLink className="nav-link" to="/home">Home</NavLink>
+              <NavLink className="nav-link" to="/home">
+                Home
+              </NavLink>
             </li>
 
             <li className="nav-item p-4">
@@ -38,19 +57,29 @@ const Navbar = () => {
             </li>
           </ul>
 
-          <ul className="navbar-nav ms-auto mb-2 mb-sm-0">
-            <li className="nav-item p-4">
-              <NavLink className="nav-link" to="/registration">
-                Register
-              </NavLink>
-            </li>
+          {fullUser ? (
+            <ul className="navbar-nav ms-auto mb-2 mb-sm-0">
+              <li className="nav-item p-4">
+                <NavLink className="nav-link" to="/registration">
+                  Welcome  {fullUser.username}
+                </NavLink>
+              </li>
+            </ul>
+          ) : (
+            <ul className="navbar-nav ms-auto mb-2 mb-sm-0">
+              <li className="nav-item p-4">
+                <NavLink className="nav-link" to="/registration">
+                  Register
+                </NavLink>
+              </li>
 
-            <li className="nav-item p-4">
-              <NavLink className="nav-link" to="/login">
-                Login
-              </NavLink>
-            </li>
-          </ul>
+              <li className="nav-item p-4">
+                <NavLink className="nav-link" to="/login">
+                  Login
+                </NavLink>
+              </li>
+            </ul>
+          )}
         </div>
       </div>
     </nav>
