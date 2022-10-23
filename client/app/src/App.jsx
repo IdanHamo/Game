@@ -10,6 +10,9 @@ import Login from "./components/authentication/login";
 import Footer from "./components/global/footer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Logout from "./components/authentication/logout";
+import ResetPassword from "./components/authentication/resetPassword";
+import ResetPasswordConfirm from "./components/authentication/resetPasswordConfirm";
 
 function App() {
   return (
@@ -46,6 +49,30 @@ function App() {
             element={
               <div className="registration-page">
                 <Registration></Registration>
+              </div>
+            }
+          ></Route>
+          <Route
+            path="/logout"
+            element={
+              <div>
+                <Logout></Logout>
+              </div>
+            }
+          ></Route>
+          <Route
+            path="/resetPassword"
+            element={
+              <div className="login-page">
+                <ResetPassword></ResetPassword>
+              </div>
+            }
+          ></Route>
+          <Route
+            path="/resetPassword/:token"
+            element={
+              <div className="login-page">
+                <ResetPasswordConfirm></ResetPasswordConfirm>
               </div>
             }
           ></Route>

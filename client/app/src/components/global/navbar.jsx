@@ -10,7 +10,6 @@ const Navbar = () => {
   useEffect(() => {
     const getUser = async () => {
       const userId = await usersService.getUser(user);
-      console.log(userId);
       const { data } = await httpService.get(`/auth/user/${userId}`);
       setFullUser(data);
     };
@@ -49,19 +48,18 @@ const Navbar = () => {
                 Home
               </NavLink>
             </li>
-
-            <li className="nav-item p-4">
-              <NavLink className="nav-link" to="/link">
-                Link
-              </NavLink>
-            </li>
           </ul>
 
           {fullUser ? (
             <ul className="navbar-nav ms-auto mb-2 mb-sm-0">
               <li className="nav-item p-4">
-                <NavLink className="nav-link" to="/registration">
-                  Welcome  {fullUser.username}
+                <NavLink className="nav-link" to="/">
+                  Welcome {fullUser.username}
+                </NavLink>
+              </li>
+              <li className="nav-item p-4">
+                <NavLink className="nav-link" to="/logout">
+                  Logout
                 </NavLink>
               </li>
             </ul>

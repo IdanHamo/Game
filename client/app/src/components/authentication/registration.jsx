@@ -54,18 +54,18 @@ const Registration = () => {
         password: values.password,
       };
       try {
-        const { status, data } = await usersService.createUser(user);
-
-        toast(data.message, {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
+        const response = await usersService.createUser(user);
+        
+        // toast(data.message, {
+        //   position: "top-center",
+        //   autoClose: 5000,
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   pauseOnHover: true,
+        //   draggable: true,
+        //   progress: undefined,
+        //   theme: "dark",
+        // });
         navigate("/login");
       } catch ({ response }) {
         setError(response.data.message);

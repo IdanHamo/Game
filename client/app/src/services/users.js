@@ -18,6 +18,11 @@ async function loginUser(user) {
   return data;
 }
 
+export function logoutUser() {
+  localStorage.removeItem(tokenKey);
+  setTokenHeader();
+}
+
 function getJWT() {
   return localStorage.getItem(tokenKey);
 }
@@ -36,6 +41,7 @@ const usersService = {
   loginUser,
   getJWT,
   getUser,
+  logoutUser,
 };
 
 export default usersService;

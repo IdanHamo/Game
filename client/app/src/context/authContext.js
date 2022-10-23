@@ -28,9 +28,13 @@ export const AuthProvider = ({ children }) => {
     const { data } = await httpService.get("/auth/user", userId);
     console.log(data);
   };
+  const logout = async () => {
+    usersService.logoutUser();
+    refreshUser();
+  };
 
   return (
-    <authContext.Provider value={{ user, login, getFullUser }}>
+    <authContext.Provider value={{ user, login, getFullUser, logout }}>
       {children}
     </authContext.Provider>
   );

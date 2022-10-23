@@ -36,7 +36,7 @@ const Login = () => {
       return errors;
     },
     async onSubmit(values) {
-      console.log(values);
+     
       try {
         await login(values);
 
@@ -55,7 +55,7 @@ const Login = () => {
       } catch ({ response }) {
         setError(response.data.message);
       }
-      console.log(values);
+      
     },
   });
   return (
@@ -87,7 +87,7 @@ const Login = () => {
                 type="text"
                 id="username"
                 {...form.getFieldProps("username")}
-                error={form.touched.username && form.errors.email}
+                error={form.touched.username && form.errors.username}
               />
 
               <label htmlFor="password" className="label mb-2">
@@ -108,7 +108,7 @@ const Login = () => {
               </div>
               <div className="d-flex justify-content-around buttons my-4">
                 <Link to="/registration">Registration</Link>
-                <a href="#">Reset password</a>
+                <Link to='/resetPassword' >Reset password</Link>
               </div>
             </form>
             <div className="semi-login col-md-4 d-flex flex-column">

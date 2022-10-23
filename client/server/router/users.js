@@ -7,7 +7,12 @@ const db = require("../service/database");
 router.post("/createUser", async (req, res) => {
   const user = req.body;
   const { error } = validateUser(user);
-  if (error) res.status(400).send(error.details[0].message);
+  if (error) {
+    return res.status(400).send({
+      ok: false,
+      message: error.details[0].message,
+    });
+  }
 
   const sql = `SELECT * FROM users WHERE username  = '${user.username}' `;
   const myQuery = db.query(sql, async (err, result) => {
@@ -19,12 +24,10 @@ router.post("/createUser", async (req, res) => {
         });
       } else {
         if (result.length >= 1) {
-          return res
-            .status(400)
-            .send({
-              ok: false,
-              message: "username or email is already in use",
-            });
+          return res.status(400).send({
+            ok: false,
+            message: "username or email is already in use",
+          });
         } else {
           const salt = await bcrypt.genSalt(10);
           user.password = await bcrypt.hash(user.password, salt);
