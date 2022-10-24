@@ -108,9 +108,30 @@ router.put("/confirmPassword/:token", async (req, res) => {
   const sql = `SELECT * FROM users WHERE id = '${user.id}'`;
   const query = db.query(sql, async (err, result) => {
     if (err) {
-      return res.status(400).send(err);
+      return res.status(400).send({
+        ok: false,
+        message: "internal error",
+      });
     }
-    console.log(result);
+    if (result.length == 1) {
+      const salt = await bcrypt.genSalt(10);
+      const newPassword = await bcrypt.hash(password, salt);
+      const updateUser = `UPDATE users SET password ='${newPassword}'
+       WHERE id ='${user.id}'`;
+
+      const passwordQuery = db.query(updateUser, async (err, result) => {
+        if (err) {
+          return res.status(500).send({
+            ok: false,
+            message: "internal error",
+          });
+        }
+        return res.status(200).send({
+          ok: true,
+          message: "The password changed successfully",
+        })
+      });
+    }
   });
 
   //   const user = await User.findOne({ _id: _id });
