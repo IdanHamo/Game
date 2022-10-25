@@ -7,8 +7,7 @@ const jwt = require("jsonwebtoken");
 const config = require("config");
 const bcrypt = require("bcrypt");
 const db = require("../service/database");
-const c = require("config");
-const { logging } = require("googleapis/build/src/apis/logging");
+
 
 require("dotenv").config();
 
@@ -34,6 +33,11 @@ router.post("/", async (req, res) => {
       if (err) {
         return res.status(400).send({ ok: false, message: "internal error" });
       } else {
+        if (!results.length) {
+          return res
+            .status(400)
+            .send({ ok: false, message: "User does not exist" });
+        }
         console.log(results[0]);
         const user = results[0];
 
@@ -79,7 +83,7 @@ router.post("/", async (req, res) => {
             const result = await transport.sendMail(mailOptions);
             return result;
           } catch (error) {
-            res.status(404).send(error.message);
+            res.status(404).send({ ok: false, message: "internal error" });
           }
         }
         sendMail(user.email)
@@ -105,7 +109,7 @@ router.put("/confirmPassword/:token", async (req, res) => {
   const user = jwt.verify(req.params.token, config.get("jwtKey"));
   console.log(user);
 
-  const sql = `SELECT * FROM users WHERE id = '${user.id}'`;
+  const sql = `SELECT * FROM users WHERE user_id = ${user.id}`;
   const query = db.query(sql, async (err, result) => {
     if (err) {
       return res.status(400).send({
@@ -117,7 +121,7 @@ router.put("/confirmPassword/:token", async (req, res) => {
       const salt = await bcrypt.genSalt(10);
       const newPassword = await bcrypt.hash(password, salt);
       const updateUser = `UPDATE users SET password ='${newPassword}'
-       WHERE id ='${user.id}'`;
+       WHERE user_id =${user.id}`;
 
       const passwordQuery = db.query(updateUser, async (err, result) => {
         if (err) {
@@ -129,25 +133,10 @@ router.put("/confirmPassword/:token", async (req, res) => {
         return res.status(200).send({
           ok: true,
           message: "The password changed successfully",
-        })
+        });
       });
     }
   });
-
-  //   const user = await User.findOne({ _id: _id });
-
-  //   user.password = password;
-
-  //   const salt = await bcrypt.genSalt(10);
-  //   user.password = await bcrypt.hash(user.password, salt);
-
-  //   await user.save();
-
-  //   res.status(200).send("password changed successfully");
 });
 
-// router.post("/", async (req, res) => {
-//   console.log(req.body);
-//   const { email } = req.body;
-// });
 module.exports = router;

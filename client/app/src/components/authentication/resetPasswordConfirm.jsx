@@ -2,10 +2,12 @@ import { useFormik } from "formik";
 import Joi from "joi";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import httpService from "../../services/httpservice";
+import { toast } from "react-toastify";
 const ResetPasswordConfirm = () => {
   const params = useParams();
+  const navigate = useNavigate();
   const [error, setError] = useState("");
   const [token, setToken] = useState("");
 
@@ -35,15 +37,32 @@ const ResetPasswordConfirm = () => {
       return errors;
     },
     async onSubmit(values) {
-      const { password, confirmPassword } = values;
-      if (password !== confirmPassword) {
-        return setError("The passwords does not match");
+      try {
+        const { password, confirmPassword } = values;
+        if (password !== confirmPassword) {
+          return setError("The passwords does not match");
+        }
+        console.log(values);
+        const response = await httpService.put(
+          `/resetPassword/confirmPassword/${token}`,
+          values
+        );
+        const message = response.data.message;
+
+        toast(message, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+        navigate("/home");
+      } catch ({ response }) {
+        setError(response.data.message);
       }
-      console.log(values);
-      const response = await httpService.put(
-        `/resetPassword/confirmPassword/${token}`
-      );
-      console.log(response);
     },
   });
   return (

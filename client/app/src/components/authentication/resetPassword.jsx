@@ -35,12 +35,13 @@ const ResetPassword = () => {
     async onSubmit(values) {
       try {
         console.log(error);
-        await httpService.post("/resetPassword/", values);
+       const response = await httpService.post("/resetPassword/", values);
+       console.log(response);
         toast("check your email");
         navigate("/");
       } catch ({ response }) {
         console.log(response);
-        setError(response.data);
+        setError(response.data.message);
       }
     },
   });
